@@ -44,9 +44,11 @@ abstract class AbstractIdentity implements Identity
     /**
      * {@inheritdoc}
      */
-    final public function isEqualTo(Identity $identity): bool
+    final public function isEqualTo($identity): bool
     {
-        return \get_class($identity) === static::class && $identity->getValue() === $this->value;
+        return \is_object($identity)
+            && \get_class($identity) === static::class
+            && $identity->getValue() === $this->getValue();
     }
 
     /**

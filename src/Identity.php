@@ -30,11 +30,11 @@ interface Identity
     /**
      * Check identity equality.
      *
-     * @param self $identity
+     * @param mixed $identity
      *
      * @return bool
      */
-    public function isEqualTo(self $identity): bool;
+    public function isEqualTo($identity): bool;
 
     /**
      * Get identity as string representation.

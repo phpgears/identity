@@ -11,3 +11,4 @@ parameters:
     - src
   ignoreErrors:
     - '/^Method Gears\\Identity\\UuidIdentity::fromString\(\) has no return typehint specified\.$/'
+    - '/^Call to an undefined method object::getValue\(\)\.$/'
