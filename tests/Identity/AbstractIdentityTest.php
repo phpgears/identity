@@ -27,6 +27,7 @@ class AbstractIdentityTest extends TestCase
 
         $this->assertSame('thisIsMyId', $stub->getValue());
         $this->assertSame('thisIsMyId', (string) $stub);
+        $this->assertSame('"thisIsMyId"', \json_encode($stub));
     }
 
     public function testEquality(): void

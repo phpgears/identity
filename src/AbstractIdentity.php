@@ -69,6 +69,14 @@ abstract class AbstractIdentity implements Identity
 
     /**
      * {@inheritdoc}
+     */
+    final public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+
+    /**
+     * {@inheritdoc}
      *
      * @return string[]
      */

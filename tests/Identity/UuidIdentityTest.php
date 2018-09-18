@@ -28,6 +28,8 @@ class UuidIdentityTest extends TestCase
         $stub = UuidIdentity::fromString($uuid);
 
         $this->assertSame($uuid, $stub->getValue());
+        $this->assertSame('4c4316cb-b48b-44fb-a034-90d789966bac', (string) $stub);
+        $this->assertSame('"4c4316cb-b48b-44fb-a034-90d789966bac"', \json_encode($stub));
     }
 
     /**

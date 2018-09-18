@@ -16,7 +16,7 @@ namespace Gears\Identity;
 /**
  * Identity value object interface.
  */
-interface Identity
+interface Identity extends \JsonSerializable
 {
     /**
      * Get identity from string.
