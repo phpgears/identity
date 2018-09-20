@@ -24,7 +24,7 @@
   "require": {
     "php": "^7.1",
     "ext-json": "*",
-    "phpgears/immutability": "0.1",
+    "phpgears/immutability": "^0.1",
     "ramsey/uuid": "^3.7"
   },
   "require-dev": {
