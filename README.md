@@ -30,7 +30,7 @@ Require composer autoload file
 require './vendor/autoload.php';
 ```
 
-By extending `Gears\Identity\AbstractIdentity` you can easily have an Identity classes
+By extending `Gears\Identity\AbstractIdentity` you can easily have a Identity classes
 
 ```php
 use Gears\Identity\AbstractIdentity;
@@ -39,14 +39,18 @@ class CustomIdentity extends AbstractIdentity
 {
     public static function fromString(string $value)
     {
-        // Check $value validity
+        // Check $value validity as an identity
 
         return new static($value);
     }
 }
 ```
 
-Most used identities use UUID values, for that reason there is already a `Gears\Identity\UuidIdentity` identity ready to be used
+#### Available implementations
+
+Due to its popularity UUID based identity class `Gears\Identity\UuidIdentity` is already available
+
+Additionally if you want a more concise UUID based identity you can use `Gears\Identity\ShortUuidIdentity`. You need to require [pascaldevink/shortuuid](https://github.com/pascaldevink/shortuuid) to use this identity
 
 ## Contributing
 

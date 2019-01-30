@@ -14,13 +14,13 @@ declare(strict_types=1);
 namespace Gears\Identity;
 
 use Gears\Identity\Exception\InvalidIdentityException;
-use Ramsey\Uuid\Exception\InvalidUuidStringException;
+use PascalDeVink\ShortUuid\ShortUuid;
 use Ramsey\Uuid\Uuid;
 
 /**
- * UUID identity.
+ * Short UUID identity.
  */
-class UuidIdentity extends AbstractIdentity
+class ShortUuidIdentity extends AbstractIdentity
 {
     /**
      * {@inheritdoc}
@@ -29,19 +29,10 @@ class UuidIdentity extends AbstractIdentity
      */
     public static function fromString(string $value)
     {
-        try {
-            $uuid = Uuid::fromString($value);
-        } catch (InvalidUuidStringException $exception) {
-            throw new InvalidIdentityException(
-                \sprintf('Provided identifier "%s" is not a valid UUID', $value),
-                0,
-                $exception
-            );
-        }
-
+        $uuid = (new ShortUuid())->decode($value);
         if ($uuid->getVariant() !== Uuid::RFC_4122 || !\in_array($uuid->getVersion(), \range(1, 5), true)) {
             throw new InvalidIdentityException(
-                \sprintf('Provided identifier "%s" is not a valid UUID', $value)
+                \sprintf('Provided identifier "%s" is not a valid short UUID', $value)
             );
         }
 
