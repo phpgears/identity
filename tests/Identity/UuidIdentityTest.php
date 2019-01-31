@@ -32,7 +32,7 @@ class UuidIdentityTest extends TestCase
 
     /**
      * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identifier "invalidUUID" is not a valid UUID
+     * @expectedExceptionMessage Provided identity value "invalidUUID" is not a valid UUID
      */
     public function testInvalidUuid(): void
     {
@@ -41,7 +41,7 @@ class UuidIdentityTest extends TestCase
 
     /**
      * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identifier "00000000-07bf-961b-abd8-c4716f92fcc0" is not a valid UUID
+     * @expectedExceptionMessage Provided identity value "00000000-07bf-961b-abd8-c4716f92fcc0" is not a valid UUID
      */
     public function testNonRFC4122Uuid(): void
     {

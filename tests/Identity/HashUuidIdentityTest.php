@@ -32,7 +32,7 @@ class HashUuidIdentityTest extends TestCase
 
     /**
      * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identifier "invalidHashedUUID" is not a valid hashed UUID
+     * @expectedExceptionMessage Provided identity value "invalidHashedUUID" is not a valid hashed UUID
      */
     public function testInvalidShortUuid(): void
     {
@@ -41,7 +41,7 @@ class HashUuidIdentityTest extends TestCase
 
     /**
      * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identifier "gGJqXEqR7AFZjBkzP9MLtWYP9AA" is not a valid hashed UUID
+     * @expectedExceptionMessage Provided identity value "gGJqXEqR7AFZjBkzP9MLtWYP9AA" is not a valid hashed UUID
      */
     public function testNonRFC4122Uuid(): void
     {

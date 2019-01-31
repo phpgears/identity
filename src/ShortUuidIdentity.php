@@ -32,7 +32,7 @@ class ShortUuidIdentity extends AbstractIdentity
         $uuid = (new ShortUuid())->decode($value);
         if ($uuid->getVariant() !== Uuid::RFC_4122 || !\in_array($uuid->getVersion(), \range(1, 5), true)) {
             throw new InvalidIdentityException(
-                \sprintf('Provided identifier "%s" is not a valid short UUID', $value)
+                \sprintf('Provided identity value "%s" is not a valid short UUID', $value)
             );
         }
 

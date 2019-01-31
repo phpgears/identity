@@ -34,7 +34,7 @@ class HashUuidIdentity extends AbstractIdentity
             $uuid = Uuid::fromString((new Hashids())->decodeHex($value));
         } catch (InvalidUuidStringException $exception) {
             throw new InvalidIdentityException(
-                \sprintf('Provided identifier "%s" is not a valid hashed UUID', $value),
+                \sprintf('Provided identity value "%s" is not a valid hashed UUID', $value),
                 0,
                 $exception
             );
@@ -42,7 +42,7 @@ class HashUuidIdentity extends AbstractIdentity
 
         if ($uuid->getVariant() !== Uuid::RFC_4122 || !\in_array($uuid->getVersion(), \range(1, 5), true)) {
             throw new InvalidIdentityException(
-                \sprintf('Provided identifier "%s" is not a valid hashed UUID', $value)
+                \sprintf('Provided identity value "%s" is not a valid hashed UUID', $value)
             );
         }
 

@@ -32,7 +32,7 @@ class ShortUuidIdentityTest extends TestCase
 
     /**
      * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identifier "invalidShortUUID" is not a valid short UUID
+     * @expectedExceptionMessage Provided identity value "invalidShortUUID" is not a valid short UUID
      */
     public function testInvalidShortUuid(): void
     {
@@ -41,7 +41,7 @@ class ShortUuidIdentityTest extends TestCase
 
     /**
      * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identifier "zaDP55gm3yL9cV2D" is not a valid short UUID
+     * @expectedExceptionMessage Provided identity value "zaDP55gm3yL9cV2D" is not a valid short UUID
      */
     public function testNonRFC4122Uuid(): void
     {

@@ -70,7 +70,7 @@ abstract class AbstractIdentity implements Identity
     /**
      * {@inheritdoc}
      */
-    public function serialize(): string
+    final public function serialize(): string
     {
         return \serialize($this->value);
     }
@@ -80,7 +80,7 @@ abstract class AbstractIdentity implements Identity
      *
      * @param mixed $serialized
      */
-    public function unserialize($serialized): void
+    final public function unserialize($serialized): void
     {
         $this->value = \unserialize($serialized, [static::class]);
     }

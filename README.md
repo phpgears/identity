@@ -30,7 +30,7 @@ Require composer autoload file
 require './vendor/autoload.php';
 ```
 
-By extending `Gears\Identity\AbstractIdentity` you can easily have an Identity classes
+By extending `Gears\Identity\AbstractIdentity` you can easily have an Identity class
 
 ```php
 use Gears\Identity\AbstractIdentity;
@@ -46,16 +46,54 @@ class CustomIdentity extends AbstractIdentity
 }
 ```
 
-### UUID implementations
+### Available implementations
 
 Due to its popularity UUID based identity implementations are provided
 
-Main direct UUID value implementation is available in class `Gears\Identity\UuidIdentity`
+##### UuidIdentity
 
-If you want a more concise UUID based identities you can use any of the following
+```php
+use Gears\Identity\UuidIdentity;
+use Ramsey\Uuid\Uuid;
 
-* `Gears\Identity\ShortUuidIdentity`. You need to composer require [pascaldevink/shortuuid](https://github.com/pascaldevink/shortuuid)
-* `Gears\Identity\HashUuidIdentity`. You need to composer require [hashids/hashids](https://github.com/ivanakimov/hashids.php). Be aware that original UUID should be hashed as hexadecimal strings, so no dashes, review Hashids documentation
+$uuid = Uuid::uuid4()->toString();
+$identity = UuidIdentity::fromString($uuid);
+```
+
+If you want a more concise UUID based identities you can use any of the following:
+
+##### ShortUuidIdentity
+
+You need to require [pascaldevink/shortuuid](https://github.com/pascaldevink/shortuuid)
+
+```php
+use Gears\Identity\ShortUuidIdentity;
+use PascalDeVink\ShortUuid\ShortUuid;
+
+$shortUuid = new ShortUuid();
+$identity = ShortUuidIdentity::fromString($shortUuid->uuid4());
+
+// Should you need to get original UUID
+$originalUuid = $shortUuid->decode($identity->getValue())->toString();
+```
+
+##### HashUuidIdentity
+
+You need to require [hashids/hashids](https://github.com/ivanakimov/hashids.php)
+
+```php
+use Gears\Identity\HashUuidIdentity;
+use Hashids\Hashids;
+use Ramsey\Uuid\Uuid;
+
+$hashIds = new Hashids();
+$uuid = Uuid::uuid4()->toString();
+$hashedUuid = $hashIds->encodeHex(\str_replace('-', '', $uuid));
+$identity = HashUuidIdentity::fromString($hashedUuid);
+
+// Should you need to get original UUID, mind that UUID has no dash separators
+$originalUuid = $hashIds->decodeHex($identity->getValue());
+```
 
 ## Contributing
 
