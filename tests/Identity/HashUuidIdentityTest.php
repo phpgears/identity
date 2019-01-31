@@ -13,38 +13,38 @@ declare(strict_types=1);
 
 namespace Gears\Identity\Tests;
 
-use Gears\Identity\ShortUuidIdentity;
+use Gears\Identity\HashUuidIdentity;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Short UUID Identity test.
+ * Hashed UUID Identity test.
  */
-class ShortUuidIdentityTest extends TestCase
+class HashUuidIdentityTest extends TestCase
 {
     public function testCreation(): void
     {
-        $shortUuid = 'QuwMZbb9f3ccpacCPmVRaF';
-        $stub = ShortUuidIdentity::fromString($shortUuid);
+        $hashedUuid = 'gqYxv3lMPXSEkGoonzDZtMNwE4Q';
+        $stub = HashUuidIdentity::fromString($hashedUuid);
 
-        $this->assertSame($shortUuid, $stub->getValue());
-        $this->assertSame($shortUuid, (string) $stub);
+        $this->assertSame($hashedUuid, $stub->getValue());
+        $this->assertSame($hashedUuid, (string) $stub);
     }
 
     /**
      * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identifier "invalidShortUUID" is not a valid short UUID
+     * @expectedExceptionMessage Provided identifier "invalidHashedUUID" is not a valid hashed UUID
      */
     public function testInvalidShortUuid(): void
     {
-        ShortUuidIdentity::fromString('invalidShortUUID');
+        HashUuidIdentity::fromString('invalidHashedUUID');
     }
 
     /**
      * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identifier "zaDP55gm3yL9cV2D" is not a valid short UUID
+     * @expectedExceptionMessage Provided identifier "gGJqXEqR7AFZjBkzP9MLtWYP9AA" is not a valid hashed UUID
      */
     public function testNonRFC4122Uuid(): void
     {
-        ShortUuidIdentity::fromString('zaDP55gm3yL9cV2D');
+        HashUuidIdentity::fromString('gGJqXEqR7AFZjBkzP9MLtWYP9AA');
     }
 }

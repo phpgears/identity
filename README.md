@@ -30,7 +30,7 @@ Require composer autoload file
 require './vendor/autoload.php';
 ```
 
-By extending `Gears\Identity\AbstractIdentity` you can easily have a Identity classes
+By extending `Gears\Identity\AbstractIdentity` you can easily have an Identity classes
 
 ```php
 use Gears\Identity\AbstractIdentity;
@@ -46,11 +46,16 @@ class CustomIdentity extends AbstractIdentity
 }
 ```
 
-#### Available implementations
+### UUID implementations
 
-Due to its popularity UUID based identity class `Gears\Identity\UuidIdentity` is already available
+Due to its popularity UUID based identity implementations are provided
 
-Additionally if you want a more concise UUID based identity you can use `Gears\Identity\ShortUuidIdentity`. You need to require [pascaldevink/shortuuid](https://github.com/pascaldevink/shortuuid) to use this identity
+Main direct UUID value implementation is available in class `Gears\Identity\UuidIdentity`
+
+If you want a more concise UUID based identities you can use any of the following
+
+* `Gears\Identity\ShortUuidIdentity`. You need to composer require [pascaldevink/shortuuid](https://github.com/pascaldevink/shortuuid)
+* `Gears\Identity\HashUuidIdentity`. You need to composer require [hashids/hashids](https://github.com/ivanakimov/hashids.php). Be aware that original UUID should be hashed as hexadecimal strings, so no dashes, review Hashids documentation
 
 ## Contributing
 

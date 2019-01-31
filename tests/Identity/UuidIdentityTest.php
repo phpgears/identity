@@ -41,10 +41,10 @@ class UuidIdentityTest extends TestCase
 
     /**
      * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identifier "00000000-07bf-861b-abd8-c4716f92fcc0" is not a valid UUID
+     * @expectedExceptionMessage Provided identifier "00000000-07bf-961b-abd8-c4716f92fcc0" is not a valid UUID
      */
     public function testNonRFC4122Uuid(): void
     {
-        UuidIdentity::fromString('00000000-07bf-861b-abd8-c4716f92fcc0');
+        UuidIdentity::fromString('00000000-07bf-961b-abd8-c4716f92fcc0');
     }
 }
