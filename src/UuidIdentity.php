@@ -27,7 +27,7 @@ class UuidIdentity extends AbstractIdentity
      *
      * @throws InvalidIdentityException
      */
-    public static function fromString(string $value)
+    final public static function fromString(string $value)
     {
         try {
             $uuid = Uuid::fromString($value);

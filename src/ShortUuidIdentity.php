@@ -27,7 +27,7 @@ class ShortUuidIdentity extends AbstractIdentity
      *
      * @throws InvalidIdentityException
      */
-    public static function fromString(string $value)
+    final public static function fromString(string $value)
     {
         $uuid = (new ShortUuid())->decode($value);
         if ($uuid->getVariant() !== Uuid::RFC_4122 || !\in_array($uuid->getVersion(), \range(1, 5), true)) {

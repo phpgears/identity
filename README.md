@@ -37,7 +37,7 @@ use Gears\Identity\AbstractIdentity;
 
 class CustomIdentity extends AbstractIdentity
 {
-    public static function fromString(string $value)
+    final public static function fromString(string $value)
     {
         // Check $value validity as an identity
 
