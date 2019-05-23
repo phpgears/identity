@@ -42,10 +42,13 @@
     "roave/security-advisories": "dev-master",
     "sebastian/phpcpd": "^3.0|^4.0",
     "squizlabs/php_codesniffer": "^2.0",
-    "thecodingmachine/phpstan-strict-rules": "^0.11"
+    "thecodingmachine/phpstan-strict-rules": "^0.11",
+    "tuupola/base62": "^2.0"
   },
   "suggest": {
-    "pascaldevink/shortuuid": "for short UUID based identities"
+    "hashids/hashids": "For hashed UUID based identities",
+    "pascaldevink/shortuuid": "For short UUID based identities",
+    "tuupola/base62": "For base62 encoded UUID based identities"
   },
   "autoload": {
     "psr-4": {

@@ -21,7 +21,7 @@ use PHPUnit\Framework\TestCase;
  */
 class AbstractIdentityTest extends TestCase
 {
-    public function testCreation(): void
+    public function testFromString(): void
     {
         $stub = AbstractIdentityStub::fromString('thisIsMyId');
 

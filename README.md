@@ -62,24 +62,13 @@ $identity = UuidIdentity::fromString($uuid);
 
 If you want a more concise UUID based identities you can use any of the following:
 
-##### ShortUuidIdentity
-
-You need to require [pascaldevink/shortuuid](https://github.com/pascaldevink/shortuuid)
-
-```php
-use Gears\Identity\ShortUuidIdentity;
-use PascalDeVink\ShortUuid\ShortUuid;
-
-$shortUuid = new ShortUuid();
-$identity = ShortUuidIdentity::fromString($shortUuid->uuid4());
-
-// Should you need to get original UUID
-$originalUuid = $shortUuid->decode($identity->getValue())->toString();
-```
-
 ##### HashUuidIdentity
 
-You need to require [hashids/hashids](https://github.com/ivanakimov/hashids.php)
+You need to require https://github.com/ivanakimov/hashids.php
+
+```
+composer require hashids/hashids
+```
 
 ```php
 use Gears\Identity\HashUuidIdentity;
@@ -91,8 +80,59 @@ $uuid = Uuid::uuid4()->toString();
 $hashedUuid = $hashIds->encodeHex(\str_replace('-', '', $uuid));
 $identity = HashUuidIdentity::fromString($hashedUuid);
 
-// Should you need to get original UUID, mind that UUID has no dash separators
-$originalUuid = $hashIds->decodeHex($identity->getValue());
+// Or from UUID string
+$identity = HashUuidIdentity::fromUuid(Uuid::uuid4()->toString());
+
+// Get original UUID
+$originalUuid = \sprintf('%s%s-%s-%s-%s-%s%s%s', ...str_split($hashIds->decodeHex($identity->getValue()), 4));
+```
+
+##### ShortUuidIdentity
+
+You need to require https://github.com/pascaldevink/shortuuid
+
+```
+composer require pascaldevink/shortuuid
+```
+
+```php
+use Gears\Identity\ShortUuidIdentity;
+use PascalDeVink\ShortUuid\ShortUuid;
+use Ramsey\Uuid\Uuid;
+
+$shortUuid = new ShortUuid();
+$identity = ShortUuidIdentity::fromString($shortUuid->uuid4());
+
+// Or from UUID string
+$identity = ShortUuidIdentity::fromUuid(Uuid::uuid4()->toString());
+
+// Get original UUID
+$originalUuid = $shortUuid->decode($identity->getValue())->toString();
+```
+
+##### Base62UuidIdentity
+
+You need to require https://github.com/tuupola/base62
+
+```
+composer require tuupola/base62
+```
+
+```php
+use Gears\Identity\Base62UuidIdentity;
+use Ramsey\Uuid\Uuid;
+use Tuupola\Base62;
+
+$bas62 = new Base62();
+$uuid = Uuid::uuid4()->toString();
+$base62Uuid = $bas62->encode(\hex2bin(\str_replace('-', '', $uuid)));
+$identity = Base62UuidIdentity::fromString($base62Uuid);
+
+// Or from UUID string
+$identity = Base62UuidIdentity::fromUuid(Uuid::uuid4()->toString());
+
+// Get original UUID
+$originalUuid = \sprintf('%s%s-%s-%s-%s-%s%s%s', ...str_split(\bin2hex($bas62->decode($identity->getValue())), 4));
 ```
 
 ## Contributing
