@@ -135,6 +135,10 @@ $identity = Base62UuidIdentity::fromUuid(Uuid::uuid4()->toString());
 $originalUuid = \sprintf('%s%s-%s-%s-%s-%s%s%s', ...str_split(\bin2hex($bas62->decode($identity->getValue())), 4));
 ```
 
+#### Non UUID based identities
+
+[phpgears/identity-extra](https://github.com/phpgears/identity-extra) hosts non UUID based identity implementations, such as Mongo ObjectId and others
+
 ## Contributing
 
 Found a bug or have a feature request? [Please open a new issue](https://github.com/phpgears/identity/issues). Have a look at existing issues before.
