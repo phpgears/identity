@@ -82,8 +82,9 @@ abstract class AbstractIdentity implements Identity
      */
     final public function unserialize($serialized): void
     {
-        $this->value = \unserialize($serialized, [static::class]);
-        $this->alreadyConstructed = true;
+        $this->checkImmutability();
+
+        $this->value = \unserialize($serialized, ['allowed_classes' => false]);
     }
 
     /**
