@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Gears\Identity\Tests;
 
+use Gears\Identity\Exception\InvalidIdentityException;
 use Gears\Identity\ShortUuidIdentity;
 use PHPUnit\Framework\TestCase;
 
@@ -30,21 +31,19 @@ class ShortUuidIdentityTest extends TestCase
         $this->assertSame($shortUuid, (string) $stub);
     }
 
-    /**
-     * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identity value "invalidShortUUID" is not a valid short UUID
-     */
     public function testInvalidShortUuid(): void
     {
+        $this->expectException(InvalidIdentityException::class);
+        $this->expectExceptionMessage('Provided identity value "invalidShortUUID" is not a valid short UUID');
+
         ShortUuidIdentity::fromString('invalidShortUUID');
     }
 
-    /**
-     * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identity value "zaDP55gm3yL9cV2D" is not a valid short UUID
-     */
     public function testNonRFC4122ShortUuid(): void
     {
+        $this->expectException(InvalidIdentityException::class);
+        $this->expectExceptionMessage('Provided identity value "zaDP55gm3yL9cV2D" is not a valid short UUID');
+
         ShortUuidIdentity::fromString('zaDP55gm3yL9cV2D');
     }
 
@@ -57,21 +56,21 @@ class ShortUuidIdentityTest extends TestCase
         $this->assertSame($shortUuid, (string) $stub);
     }
 
-    /**
-     * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identity value "invalidUUID" is not a valid UUID
-     */
     public function testInvalidUuid(): void
     {
+        $this->expectException(InvalidIdentityException::class);
+        $this->expectExceptionMessage('Provided identity value "invalidUUID" is not a valid UUID');
+
         ShortUuidIdentity::fromUuid('invalidUUID');
     }
 
-    /**
-     * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identity value "00000000-07bf-961b-abd8-c4716f92fcc0" is not a valid UUID
-     */
     public function testNonRFC4122Uuid(): void
     {
+        $this->expectException(InvalidIdentityException::class);
+        $this->expectExceptionMessage(
+            'Provided identity value "00000000-07bf-961b-abd8-c4716f92fcc0" is not a valid UUID'
+        );
+
         ShortUuidIdentity::fromUuid('00000000-07bf-961b-abd8-c4716f92fcc0');
     }
 }

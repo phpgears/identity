@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Gears\Identity\Tests;
 
+use Gears\Identity\Exception\InvalidIdentityException;
 use Gears\Identity\UuidIdentity;
 use PHPUnit\Framework\TestCase;
 
@@ -30,21 +31,21 @@ class UuidIdentityTest extends TestCase
         $this->assertSame($uuid, (string) $stub);
     }
 
-    /**
-     * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identity value "invalidUUID" is not a valid UUID
-     */
     public function testInvalidUuid(): void
     {
+        $this->expectException(InvalidIdentityException::class);
+        $this->expectExceptionMessage('Provided identity value "invalidUUID" is not a valid UUID');
+
         UuidIdentity::fromString('invalidUUID');
     }
 
-    /**
-     * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identity value "00000000-07bf-961b-abd8-c4716f92fcc0" is not a valid UUID
-     */
     public function testNonRFC4122Uuid(): void
     {
+        $this->expectException(InvalidIdentityException::class);
+        $this->expectExceptionMessage(
+            'Provided identity value "00000000-07bf-961b-abd8-c4716f92fcc0" is not a valid UUID'
+        );
+
         UuidIdentity::fromString('00000000-07bf-961b-abd8-c4716f92fcc0');
     }
 }

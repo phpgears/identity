@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Gears\Identity\Tests;
 
+use Gears\Identity\Exception\InvalidIdentityException;
 use Gears\Identity\HashUuidIdentity;
 use PHPUnit\Framework\TestCase;
 
@@ -30,21 +31,21 @@ class HashUuidIdentityTest extends TestCase
         $this->assertSame($hashedUuid, (string) $stub);
     }
 
-    /**
-     * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identity value "invalidHashedUUID" is not a valid hashed UUID
-     */
     public function testInvalidHashUuid(): void
     {
+        $this->expectException(InvalidIdentityException::class);
+        $this->expectExceptionMessage('Provided identity value "invalidHashedUUID" is not a valid hashed UUID');
+
         HashUuidIdentity::fromString('invalidHashedUUID');
     }
 
-    /**
-     * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identity value "gGJqXEqR7AFZjBkzP9MLtWYP9AA" is not a valid hashed UUID
-     */
     public function testNonRFC4122HashUuid(): void
     {
+        $this->expectException(InvalidIdentityException::class);
+        $this->expectExceptionMessage(
+            'Provided identity value "gGJqXEqR7AFZjBkzP9MLtWYP9AA" is not a valid hashed UUID'
+        );
+
         HashUuidIdentity::fromString('gGJqXEqR7AFZjBkzP9MLtWYP9AA');
     }
 
@@ -57,21 +58,21 @@ class HashUuidIdentityTest extends TestCase
         $this->assertSame($hashedUuid, (string) $stub);
     }
 
-    /**
-     * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identity value "invalidUUID" is not a valid UUID
-     */
     public function testInvalidUuid(): void
     {
+        $this->expectException(InvalidIdentityException::class);
+        $this->expectExceptionMessage('Provided identity value "invalidUUID" is not a valid UUID');
+
         HashUuidIdentity::fromUuid('invalidUUID');
     }
 
-    /**
-     * @expectedException \Gears\Identity\Exception\InvalidIdentityException
-     * @expectedExceptionMessage Provided identity value "00000000-07bf-961b-abd8-c4716f92fcc0" is not a valid UUID
-     */
     public function testNonRFC4122Uuid(): void
     {
+        $this->expectException(InvalidIdentityException::class);
+        $this->expectExceptionMessage(
+            'Provided identity value "00000000-07bf-961b-abd8-c4716f92fcc0" is not a valid UUID'
+        );
+
         HashUuidIdentity::fromUuid('00000000-07bf-961b-abd8-c4716f92fcc0');
     }
 }

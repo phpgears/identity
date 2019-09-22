@@ -36,7 +36,7 @@ abstract class AbstractIdentity implements Identity
      */
     final protected function __construct(string $value)
     {
-        $this->checkImmutability();
+        $this->assertImmutable();
 
         $this->value = $value;
     }
@@ -82,7 +82,7 @@ abstract class AbstractIdentity implements Identity
      */
     final public function unserialize($serialized): void
     {
-        $this->checkImmutability();
+        $this->assertImmutable();
 
         $this->value = \unserialize($serialized, ['allowed_classes' => false]);
     }
