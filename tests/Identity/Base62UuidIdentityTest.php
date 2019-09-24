@@ -27,8 +27,8 @@ class Base62UuidIdentityTest extends TestCase
         $base62Uuid = '5Emmuz1MtDyH0ulbheVWbM';
         $stub = Base62UuidIdentity::fromString($base62Uuid);
 
-        $this->assertSame($base62Uuid, $stub->getValue());
-        $this->assertSame($base62Uuid, (string) $stub);
+        static::assertSame($base62Uuid, $stub->getValue());
+        static::assertSame($base62Uuid, (string) $stub);
     }
 
     public function testInvalidBase62Uuid(): void
@@ -52,8 +52,8 @@ class Base62UuidIdentityTest extends TestCase
         $base62Uuid = '1hguHv6WskxxsOZWWde1D7';
         $stub = Base62UuidIdentity::fromUuid('3802ed46-6490-417b-9cd7-968efa4af5e1');
 
-        $this->assertSame($base62Uuid, $stub->getValue());
-        $this->assertSame($base62Uuid, (string) $stub);
+        static::assertSame($base62Uuid, $stub->getValue());
+        static::assertSame($base62Uuid, (string) $stub);
     }
 
     public function testInvalidUuid(): void

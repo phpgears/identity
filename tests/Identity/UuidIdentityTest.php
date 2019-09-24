@@ -27,8 +27,8 @@ class UuidIdentityTest extends TestCase
         $uuid = '4c4316cb-b48b-44fb-a034-90d789966bac';
         $stub = UuidIdentity::fromString($uuid);
 
-        $this->assertSame($uuid, $stub->getValue());
-        $this->assertSame($uuid, (string) $stub);
+        static::assertSame($uuid, $stub->getValue());
+        static::assertSame($uuid, (string) $stub);
     }
 
     public function testInvalidUuid(): void

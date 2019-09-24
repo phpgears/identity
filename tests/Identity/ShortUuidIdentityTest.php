@@ -27,8 +27,8 @@ class ShortUuidIdentityTest extends TestCase
         $shortUuid = 'QuwMZbb9f3ccpacCPmVRaF';
         $stub = ShortUuidIdentity::fromString($shortUuid);
 
-        $this->assertSame($shortUuid, $stub->getValue());
-        $this->assertSame($shortUuid, (string) $stub);
+        static::assertSame($shortUuid, $stub->getValue());
+        static::assertSame($shortUuid, (string) $stub);
     }
 
     public function testInvalidShortUuid(): void
@@ -52,8 +52,8 @@ class ShortUuidIdentityTest extends TestCase
         $shortUuid = 'FfRp8fQyGyCnTW42bXJ4yB';
         $stub = ShortUuidIdentity::fromUuid('3802ed46-6490-417b-9cd7-968efa4af5e1');
 
-        $this->assertSame($shortUuid, $stub->getValue());
-        $this->assertSame($shortUuid, (string) $stub);
+        static::assertSame($shortUuid, $stub->getValue());
+        static::assertSame($shortUuid, (string) $stub);
     }
 
     public function testInvalidUuid(): void
