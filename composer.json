@@ -30,7 +30,7 @@
   "require-dev": {
     "brainmaestro/composer-git-hooks": "^2.1",
     "friendsofphp/php-cs-fixer": "^2.0",
-    "hashids/hashids": "^3.0",
+    "hashids/hashids": "^3.0|^4.0",
     "infection/infection": "^0.9",
     "pascaldevink/shortuuid": "^2.1",
     "phpmd/phpmd": "^2.0",
