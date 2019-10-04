@@ -24,7 +24,7 @@ class AbstractUuidIdentityStub extends AbstractUuidIdentity
     /**
      * {@inheritdoc}
      */
-    public static function fromString(string $value): Identity
+    public static function fromString(string $value)
     {
         return new static(static::uuidFromString($value)->toString());
     }

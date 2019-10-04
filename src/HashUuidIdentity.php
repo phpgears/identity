@@ -23,8 +23,6 @@ class HashUuidIdentity extends AbstractUuidIdentity
 {
     /**
      * {@inheritdoc}
-     *
-     * @throws InvalidIdentityException
      */
     final public static function fromString(string $value)
     {
@@ -45,6 +43,8 @@ class HashUuidIdentity extends AbstractUuidIdentity
      * Get identity from UUID string.
      *
      * @param string $value
+     *
+     * @throws InvalidIdentityException
      *
      * @return mixed|static
      */

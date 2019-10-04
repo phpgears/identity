@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Gears\Identity;
 
+use Gears\Identity\Exception\InvalidIdentityException;
+
 /**
  * Identity value object interface.
  */
@@ -22,6 +24,8 @@ interface Identity extends \Serializable, \JsonSerializable
      * Get identity from string.
      *
      * @param string $value
+     *
+     * @throws InvalidIdentityException
      *
      * @return mixed|self
      */
@@ -44,6 +48,8 @@ interface Identity extends \Serializable, \JsonSerializable
     public function getValue(): string;
 
     /**
+     * Get identity as string representation.
+     *
      * @return string
      */
     public function __toString(): string;

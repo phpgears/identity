@@ -24,7 +24,7 @@ class AbstractIdentityStub extends AbstractIdentity
     /**
      * {@inheritdoc}
      */
-    public static function fromString(string $value): Identity
+    public static function fromString(string $value)
     {
         return new static($value);
     }
