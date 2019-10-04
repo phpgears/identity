@@ -22,15 +22,6 @@ use PHPUnit\Framework\TestCase;
  */
 class HashUuidIdentityTest extends TestCase
 {
-    public function testFromString(): void
-    {
-        $hashedUuid = 'gqYxv3lMPXSEkGoonzDZtMNwE4Q';
-        $stub = HashUuidIdentity::fromString($hashedUuid);
-
-        static::assertSame($hashedUuid, $stub->getValue());
-        static::assertSame($hashedUuid, (string) $stub);
-    }
-
     public function testInvalidHashUuid(): void
     {
         $this->expectException(InvalidIdentityException::class);
@@ -49,6 +40,15 @@ class HashUuidIdentityTest extends TestCase
         HashUuidIdentity::fromString('gGJqXEqR7AFZjBkzP9MLtWYP9AA');
     }
 
+    public function testFromString(): void
+    {
+        $hashedUuid = 'gqYxv3lMPXSEkGoonzDZtMNwE4Q';
+        $stub = HashUuidIdentity::fromString($hashedUuid);
+
+        static::assertSame($hashedUuid, $stub->getValue());
+        static::assertSame($hashedUuid, (string) $stub);
+    }
+
     public function testFromUuid(): void
     {
         $hashedUuid = 'vp5kzNgRlxuwLOJ5OJWAsQyBWkOw';
@@ -56,23 +56,5 @@ class HashUuidIdentityTest extends TestCase
 
         static::assertSame($hashedUuid, $stub->getValue());
         static::assertSame($hashedUuid, (string) $stub);
-    }
-
-    public function testInvalidUuid(): void
-    {
-        $this->expectException(InvalidIdentityException::class);
-        $this->expectExceptionMessage('Provided identity value "invalidUUID" is not a valid UUID');
-
-        HashUuidIdentity::fromUuid('invalidUUID');
-    }
-
-    public function testNonRFC4122Uuid(): void
-    {
-        $this->expectException(InvalidIdentityException::class);
-        $this->expectExceptionMessage(
-            'Provided identity value "00000000-07bf-961b-abd8-c4716f92fcc0" is not a valid UUID'
-        );
-
-        HashUuidIdentity::fromUuid('00000000-07bf-961b-abd8-c4716f92fcc0');
     }
 }

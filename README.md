@@ -46,13 +46,11 @@ class CustomIdentity extends AbstractIdentity
 }
 ```
 
-### Available implementations
+### Implementations
 
-Due to its popularity UUID based identity implementations are provided
+Due to its popularity UUID ([RFC 4122](http://tools.ietf.org/html/rfc4122)) based identity implementations are provided
 
 ##### UuidIdentity
-
-As per [RFC 4122](http://tools.ietf.org/html/rfc4122)
 
 ```php
 use Gears\Identity\UuidIdentity;
@@ -157,19 +155,19 @@ $originalUuid = \sprintf('%s%s-%s-%s-%s-%s%s%s', ...\str_split(\bin2hex($base62-
 
 #### Non-UUID based identities
 
-[phpgears/identity-extra](https://github.com/phpgears/identity-extra) hosts non UUID based identity implementations, such as Mongo ObjectId and several others
+[phpgears/identity-extra](https://github.com/phpgears/identity-extra) hosts non UUID based identity implementations, such as Mongo's ObjectId and several others
 
 ## The Right Identity
 
 There is no point on creating non-unique identities, always use a proven method of ensuring the uniqueness of the identity. This can basically be stated as: **do NOT implement your own mechanism for creating unique identifiers, ever, period**
 
-Related with previous paragraph, it **is highly discouraged to allow identities with arbitrary string values**, or values that cannot be checked against to certify correctness, that is the reason why a general open-value identity class is not provided and **you should never implement such a thing**
+**It's highly discouraged to allow identities with arbitrary string values**, or values that cannot be checked against to certify correctness, that is the reason why a general open-value identity class is not provided and **you should never implement such a thing**
 
 If you want to maximize interoperability with other systems on your architecture or others', such as message queues, webhooks, shared messages systems, etc, you most probably should go with plain ol' UUID identities as the format is widely accepted and has support in all mayor languages
 
-If you have full control of your architecture and the systems it shares data with you may consider using a more concise UUID identifier or a non-UUID identifier, as formats can be more user/url friendly, can be sortable
+If you have full control of your architecture and the systems it shares data with you may consider using a more concise UUID identifier or a non-UUID identifier which can have other benefits such as being more user/url friendly, being sortable, etc
 
-> If you happen to know another method of generating unique identifiers let me know so it can be analysed and eventually integrated
+_If you happen to know another method of generating unique identifiers let me know so it can be analysed and eventually integrated_
 
 ## Contributing
 

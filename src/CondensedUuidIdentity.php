@@ -14,13 +14,11 @@ declare(strict_types=1);
 namespace Gears\Identity;
 
 use Gears\Identity\Exception\InvalidIdentityException;
-use Ramsey\Uuid\Exception\InvalidUuidStringException;
-use Ramsey\Uuid\Uuid;
 
 /**
  * Condensed UUID identity.
  */
-class CondensedUuidIdentity extends AbstractIdentity
+class CondensedUuidIdentity extends AbstractUuidIdentity
 {
     /**
      * {@inheritdoc}
@@ -29,21 +27,13 @@ class CondensedUuidIdentity extends AbstractIdentity
      */
     final public static function fromString(string $value)
     {
-        $uuidString = \sprintf('%s%s-%s-%s-%s-%s%s%s', ...\str_split($value, 4));
-
         try {
-            $uuid = Uuid::fromString($uuidString);
-        } catch (InvalidUuidStringException $exception) {
+            static::uuidFromString(\sprintf('%s%s-%s-%s-%s-%s%s%s', ...\str_split($value, 4)));
+        } catch (\Exception $exception) {
             throw new InvalidIdentityException(
                 \sprintf('Provided identity value "%s" is not a valid condensed UUID', $value),
                 0,
                 $exception
-            );
-        }
-
-        if ($uuid->getVariant() !== Uuid::RFC_4122 || !\in_array($uuid->getVersion(), \range(1, 5), true)) {
-            throw new InvalidIdentityException(
-                \sprintf('Provided identity value "%s" is not a valid condensed UUID', $value)
             );
         }
 
@@ -59,22 +49,8 @@ class CondensedUuidIdentity extends AbstractIdentity
      */
     final public static function fromUuid(string $value)
     {
-        try {
-            $uuid = Uuid::fromString($value);
-        } catch (InvalidUuidStringException $exception) {
-            throw new InvalidIdentityException(
-                \sprintf('Provided identity value "%s" is not a valid UUID', $value),
-                0,
-                $exception
-            );
-        }
+        $uuid = static::uuidFromString($value);
 
-        if ($uuid->getVariant() !== Uuid::RFC_4122 || !\in_array($uuid->getVersion(), \range(1, 5), true)) {
-            throw new InvalidIdentityException(
-                \sprintf('Provided identity value "%s" is not a valid UUID', $value)
-            );
-        }
-
-        return new static(\str_replace('-', '', $value));
+        return new static(\str_replace('-', '', $uuid->toString()));
     }
 }
