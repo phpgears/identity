@@ -16,7 +16,7 @@ namespace Gears\Identity;
 use Gears\Identity\Exception\InvalidIdentityException;
 
 /**
- * Identity value object interface.
+ * Identity interface.
  */
 interface Identity extends \Serializable, \JsonSerializable
 {

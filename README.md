@@ -54,10 +54,17 @@ Due to its popularity UUID ([RFC 4122](http://tools.ietf.org/html/rfc4122)) base
 
 ```php
 use Gears\Identity\UuidIdentity;
+use Gears\Identity\UuidIdentityGenerator;
 use Ramsey\Uuid\Uuid;
 
 $uuid = Uuid::uuid4()->toString();
 $identity = UuidIdentity::fromString($uuid);
+
+// From generator
+$identity = (new UuidIdentityGenerator())->generate();
+
+// Get original UUID string
+$originalUuid = $identity->getValue();
 ```
 
 If you want a more concise UUID based identities you can use any of the following:
@@ -68,15 +75,19 @@ UUID without dashes
 
 ```php
 use Gears\Identity\CondensedUuidIdentity;
+use Gears\Identity\CondensedUuidIdentityGenerator;
 use Ramsey\Uuid\Uuid;
 
 $uuid = Uuid::uuid4()->toString();
 $identity = CondensedUuidIdentity::fromString(\str_replace('-', '', $uuid));
 
-// Or from UUID string
+// From UUID string
 $identity = CondensedUuidIdentity::fromUuid($uuid);
 
-// Get original UUID
+// From generator
+$identity = (new CondensedUuidIdentityGenerator())->generate();
+
+// Get original UUID string
 $originalUuid = \sprintf('%s%s-%s-%s-%s-%s%s%s', ...\str_split($identity->getValue(), 4));
 ```
 
@@ -90,6 +101,7 @@ composer require hashids/hashids
 
 ```php
 use Gears\Identity\HashUuidIdentity;
+use Gears\Identity\HashUuidIdentityGenerator;
 use Hashids\Hashids;
 use Ramsey\Uuid\Uuid;
 
@@ -98,10 +110,13 @@ $uuid = Uuid::uuid4()->toString();
 $hashedUuid = $hashIds->encodeHex(\str_replace('-', '', $uuid));
 $identity = HashUuidIdentity::fromString($hashedUuid);
 
-// Or from UUID string
+// From UUID string
 $identity = HashUuidIdentity::fromUuid($uuid);
 
-// Get original UUID
+// From generator
+$identity = (new HashUuidIdentityGenerator())->generate();
+
+// Get original UUID string
 $originalUuid = \sprintf('%s%s-%s-%s-%s-%s%s%s', ...\str_split($hashIds->decodeHex($identity->getValue()), 4));
 ```
 
@@ -115,16 +130,20 @@ composer require pascaldevink/shortuuid
 
 ```php
 use Gears\Identity\ShortUuidIdentity;
+use Gears\Identity\ShortUuidIdentityGenerator;
 use PascalDeVink\ShortUuid\ShortUuid;
 use Ramsey\Uuid\Uuid;
 
 $shortUuid = new ShortUuid();
 $identity = ShortUuidIdentity::fromString($shortUuid->uuid4());
 
-// Or from UUID string
+// From UUID string
 $identity = ShortUuidIdentity::fromUuid(Uuid::uuid4()->toString());
 
-// Get original UUID
+// From generator
+$identity = (new ShortUuidIdentityGenerator())->generate();
+
+// Get original UUID string
 $originalUuid = $shortUuid->decode($identity->getValue())->toString();
 ```
 
@@ -138,6 +157,7 @@ composer require tuupola/base62
 
 ```php
 use Gears\Identity\Base62UuidIdentity;
+use Gears\Identity\Base62UuidIdentityGenerator;
 use Ramsey\Uuid\Uuid;
 use Tuupola\Base62;
 
@@ -146,10 +166,13 @@ $uuid = Uuid::uuid4()->toString();
 $base62Uuid = $base62->encode(\hex2bin(\str_replace('-', '', $uuid)));
 $identity = Base62UuidIdentity::fromString($base62Uuid);
 
-// Or from UUID string
+// From UUID string
 $identity = Base62UuidIdentity::fromUuid($uuid);
 
-// Get original UUID
+// From generator
+$identity = (new Base62UuidIdentityGenerator())->generate();
+
+// Get original UUID string
 $originalUuid = \sprintf('%s%s-%s-%s-%s-%s%s%s', ...\str_split(\bin2hex($base62->decode($identity->getValue())), 4));
 ```
 
