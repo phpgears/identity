@@ -68,6 +68,24 @@ abstract class AbstractIdentity implements Identity
     }
 
     /**
+     * @return array<string, mixed>
+     */
+    final public function __serialize(): array
+    {
+        return ['value' => $this->value];
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public function __unserialize(array $data): void
+    {
+        $this->assertImmutable();
+
+        $this->value = $data['value'];
+    }
+
+    /**
      * {@inheritdoc}
      */
     final public function serialize(): string
