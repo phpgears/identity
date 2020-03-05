@@ -33,7 +33,10 @@ class AbstractIdentityTest extends TestCase
     {
         $stub = AbstractIdentityStub::fromString('thisIsMyId');
 
-        $serialized = 'C:46:"Gears\Identity\Tests\Stub\AbstractIdentityStub":18:{s:10:"thisIsMyId";}';
+        $serialized = \version_compare(\PHP_VERSION, '7.4.0') >= 0
+            ? 'O:46:"Gears\Identity\Tests\Stub\AbstractIdentityStub":1:{s:5:"value";s:10:"thisIsMyId";}'
+            : 'C:46:"Gears\Identity\Tests\Stub\AbstractIdentityStub":18:{s:10:"thisIsMyId";}';
+
         static::assertSame($serialized, \serialize($stub));
         static::assertSame('thisIsMyId', (\unserialize($serialized))->getValue());
         static::assertSame('"thisIsMyId"', \json_encode($stub));
