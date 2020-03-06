@@ -78,7 +78,7 @@ abstract class AbstractIdentity implements Identity
     /**
      * @param array<string, mixed> $data
      */
-    public function __unserialize(array $data): void
+    final public function __unserialize(array $data): void
     {
         $this->assertImmutable();
 
