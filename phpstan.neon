@@ -3,4 +3,7 @@ parameters:
   paths:
     - src
   ignoreErrors:
-    - '/^Call to an undefined method object::getValue\(\)\.$/'
+    - message: '/^Call to an undefined method object::getValue\(\)\.$/'
+      path: src/AbstractIdentity.php
+    - message: '/^Class Ramsey\\Uuid\\Nonstandard\\Uuid not found\.$/'
+      path: src/AbstractUuidIdentity.php
