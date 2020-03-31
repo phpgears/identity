@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Gears\Identity;
 
 /**
- * UUID identity generator.
+ * UUID version 4 (random) identity generator.
  */
 class UuidIdentityGenerator extends AbstractUuidIdentityGenerator
 {

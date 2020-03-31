@@ -54,6 +54,7 @@ Due to its popularity UUID ([RFC 4122](http://tools.ietf.org/html/rfc4122)) base
 
 ```php
 use Gears\Identity\UuidIdentity;
+use Gears\Identity\OrderedUuidIdentityGenerator;
 use Gears\Identity\UuidIdentityGenerator;
 use Ramsey\Uuid\Uuid;
 
@@ -62,6 +63,7 @@ $identity = UuidIdentity::fromString($uuid);
 
 // From generator
 $identity = (new UuidIdentityGenerator())->generate();
+$identity = (new OrderedUuidIdentityGenerator())->generate();
 
 // Get original UUID string
 $originalUuid = $identity->getValue();
