@@ -5,3 +5,11 @@ parameters:
   ignoreErrors:
     - message: '/^Call to an undefined method object::getValue\(\)\.$/'
       path: src/AbstractIdentity.php
+    - message: '/^Call to an undefined static method Ramsey\\Uuid\\Uuid::uuid6\(\)\.$/'
+      path: src/OrderedUuidIdentityGenerator.php
+    - message: '/^Call to an undefined method Ramsey\\Uuid\\UuidInterface::getFields\(\)\.$/'
+      path: src/AbstractUuidIdentity.php
+    - message: '/^PHPDoc tag @var for variable \$fields contains unknown class Ramsey\\Uuid\\Rfc4122\\FieldsInterface\.$/'
+      path: src/AbstractUuidIdentity.php
+    - message: '/^Call to method get(Variant|Version)\(\) on an unknown class Ramsey\\Uuid\\Rfc4122\\FieldsInterface\.$/'
+      path: src/AbstractUuidIdentity.php

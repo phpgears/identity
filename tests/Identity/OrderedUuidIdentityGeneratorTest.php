@@ -38,6 +38,10 @@ class OrderedUuidIdentityGeneratorTest extends TestCase
 
     public function testGeneration(): void
     {
+        if (!\interface_exists('Ramsey\Uuid\DeprecatedUuidInterface')) {
+            $this->markTestSkipped('Ordered UUID are not supported');
+        }
+
         $identity = (new OrderedUuidIdentityGenerator())->generate();
 
         static::assertInstanceOf(UuidIdentity::class, $identity);
