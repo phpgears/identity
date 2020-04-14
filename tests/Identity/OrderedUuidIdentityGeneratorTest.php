@@ -31,7 +31,7 @@ class OrderedUuidIdentityGeneratorTest extends TestCase
         }
 
         $this->expectException(UnsupportedIdentityException::class);
-        $this->expectExceptionMessage('Ordered UUID (version 6) are not available. Update ramsey/uuid to version ^4.0');
+        $this->expectExceptionMessage('Ordered UUID (version 6) not available. Update ramsey/uuid to version ^4.0.');
 
         (new OrderedUuidIdentityGenerator())->generate();
     }

@@ -30,7 +30,7 @@ class OrderedUuidIdentityGenerator extends AbstractUuidIdentityGenerator
     {
         if (!\interface_exists('Ramsey\Uuid\DeprecatedUuidInterface')) {
             throw new UnsupportedIdentityException(
-                'Ordered UUID (version 6) are not available. Update ramsey/uuid to version ^4.0'
+                'Ordered UUID (version 6) not available. Update ramsey/uuid to version ^4.0.'
             );
         }
 

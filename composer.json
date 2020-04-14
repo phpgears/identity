@@ -34,6 +34,7 @@
     "infection/infection": "^0.13|^0.15",
     "pascaldevink/shortuuid": "^2.1",
     "overtrue/phplint": "^1.2",
+    "pedrotroller/php-cs-custom-fixer": "^2.19",
     "phpmd/phpmd": "^2.8",
     "phpstan/extension-installer": "^1.0.3",
     "phpstan/phpstan": "^0.12",
