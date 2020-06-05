@@ -19,7 +19,7 @@ use Ramsey\Uuid\Uuid;
 /**
  * UUID version 6 (ordered UUID) identity generator.
  */
-class OrderedUuidIdentityGenerator extends AbstractUuidIdentityGenerator
+class OrderedUuidIdentityGenerator implements IdentityGenerator
 {
     /**
      * {@inheritdoc}
