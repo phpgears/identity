@@ -26,7 +26,6 @@ class AbstractIdentityTest extends TestCase
         $stub = AbstractIdentityStub::fromString('thisIsMyId');
 
         static::assertSame('thisIsMyId', $stub->getValue());
-        static::assertSame('thisIsMyId', (string) $stub);
     }
 
     public function testSerialization(): void

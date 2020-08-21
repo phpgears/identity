@@ -27,6 +27,5 @@ class UuidIdentityTest extends TestCase
         $stub = UuidIdentity::fromString($uuid);
 
         static::assertSame($uuid, $stub->getValue());
-        static::assertSame($uuid, (string) $stub);
     }
 }

@@ -44,7 +44,6 @@ class ShortUuidIdentityTest extends TestCase
         $stub = ShortUuidIdentity::fromString($shortUuid);
 
         static::assertSame($shortUuid, $stub->getValue());
-        static::assertSame($shortUuid, (string) $stub);
     }
 
     public function testFromUuid(): void
@@ -53,6 +52,5 @@ class ShortUuidIdentityTest extends TestCase
         $stub = ShortUuidIdentity::fromUuid('3802ed46-6490-417b-9cd7-968efa4af5e1');
 
         static::assertSame($shortUuid, $stub->getValue());
-        static::assertSame($shortUuid, (string) $stub);
     }
 }

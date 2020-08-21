@@ -46,11 +46,4 @@ interface Identity extends \Serializable, \JsonSerializable
      * @return string
      */
     public function getValue(): string;
-
-    /**
-     * Get identity as string representation.
-     *
-     * @return string
-     */
-    public function __toString(): string;
 }

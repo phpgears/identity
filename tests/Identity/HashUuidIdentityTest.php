@@ -46,7 +46,6 @@ class HashUuidIdentityTest extends TestCase
         $stub = HashUuidIdentity::fromString($hashedUuid);
 
         static::assertSame($hashedUuid, $stub->getValue());
-        static::assertSame($hashedUuid, (string) $stub);
     }
 
     public function testFromUuid(): void
@@ -55,6 +54,5 @@ class HashUuidIdentityTest extends TestCase
         $stub = HashUuidIdentity::fromUuid('3802ed46-6490-417b-9cd7-968efa4af5e1');
 
         static::assertSame($hashedUuid, $stub->getValue());
-        static::assertSame($hashedUuid, (string) $stub);
     }
 }

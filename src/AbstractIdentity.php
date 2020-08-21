@@ -60,14 +60,6 @@ abstract class AbstractIdentity implements Identity
     }
 
     /**
-     * {@inheritdoc}
-     */
-    final public function __toString(): string
-    {
-        return $this->value;
-    }
-
-    /**
      * @return array<string, mixed>
      */
     final public function __serialize(): array
