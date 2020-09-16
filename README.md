@@ -83,11 +83,8 @@ use Ramsey\Uuid\Uuid;
 $uuid = Uuid::uuid4()->toString();
 $identity = CondensedUuidIdentity::fromString(\str_replace('-', '', $uuid));
 
-// From UUID string
-$identity = CondensedUuidIdentity::fromUuid($uuid);
-
-// From generator
-$identity = (new CondensedUuidIdentityGenerator())->generate();
+$identity = CondensedUuidIdentity::fromUuid($uuid); // From UUID string
+$identity = (new CondensedUuidIdentityGenerator())->generate(); // From generator
 
 // Get original UUID string
 $originalUuid = \sprintf('%s%s-%s-%s-%s-%s%s%s', ...\str_split($identity->getValue(), 4));
@@ -95,7 +92,7 @@ $originalUuid = \sprintf('%s%s-%s-%s-%s-%s%s%s', ...\str_split($identity->getVal
 
 ##### HashUuidIdentity
 
-You need to require https://github.com/ivanakimov/hashids.php
+Require https://github.com/ivanakimov/hashids.php
 
 ```
 composer require hashids/hashids
@@ -112,11 +109,8 @@ $uuid = Uuid::uuid4()->toString();
 $hashedUuid = $hashIds->encodeHex(\str_replace('-', '', $uuid));
 $identity = HashUuidIdentity::fromString($hashedUuid);
 
-// From UUID string
-$identity = HashUuidIdentity::fromUuid($uuid);
-
-// From generator
-$identity = (new HashUuidIdentityGenerator())->generate();
+$identity = HashUuidIdentity::fromUuid($uuid); // From UUID string
+$identity = (new HashUuidIdentityGenerator())->generate(); // From generator
 
 // Get original UUID string
 $originalUuid = \sprintf('%s%s-%s-%s-%s-%s%s%s', ...\str_split($hashIds->decodeHex($identity->getValue()), 4));
@@ -124,7 +118,7 @@ $originalUuid = \sprintf('%s%s-%s-%s-%s-%s%s%s', ...\str_split($hashIds->decodeH
 
 ##### ShortUuidIdentity
 
-You need to require https://github.com/pascaldevink/shortuuid
+Require https://github.com/pascaldevink/shortuuid
 
 ```
 composer require pascaldevink/shortuuid
@@ -139,11 +133,8 @@ use Ramsey\Uuid\Uuid;
 $shortUuid = new ShortUuid();
 $identity = ShortUuidIdentity::fromString($shortUuid->uuid4());
 
-// From UUID string
-$identity = ShortUuidIdentity::fromUuid(Uuid::uuid4()->toString());
-
-// From generator
-$identity = (new ShortUuidIdentityGenerator())->generate();
+$identity = ShortUuidIdentity::fromUuid(Uuid::uuid4()->toString()); // From UUID string
+$identity = (new ShortUuidIdentityGenerator())->generate(); // From generator
 
 // Get original UUID string
 $originalUuid = $shortUuid->decode($identity->getValue())->toString();
@@ -151,7 +142,7 @@ $originalUuid = $shortUuid->decode($identity->getValue())->toString();
 
 ##### Base62UuidIdentity
 
-You need to require https://github.com/tuupola/base62
+Require https://github.com/tuupola/base62
 
 ```
 composer require tuupola/base62
@@ -168,11 +159,8 @@ $uuid = Uuid::uuid4()->toString();
 $base62Uuid = $base62->encode(\hex2bin(\str_replace('-', '', $uuid)));
 $identity = Base62UuidIdentity::fromString($base62Uuid);
 
-// From UUID string
-$identity = Base62UuidIdentity::fromUuid($uuid);
-
-// From generator
-$identity = (new Base62UuidIdentityGenerator())->generate();
+$identity = Base62UuidIdentity::fromUuid($uuid); // From UUID string
+$identity = (new Base62UuidIdentityGenerator())->generate(); // From generator
 
 // Get original UUID string
 $originalUuid = \sprintf('%s%s-%s-%s-%s-%s%s%s', ...\str_split(\bin2hex($base62->decode($identity->getValue())), 4));
@@ -180,19 +168,38 @@ $originalUuid = \sprintf('%s%s-%s-%s-%s-%s%s%s', ...\str_split(\bin2hex($base62-
 
 #### Non-UUID based identities
 
-[phpgears/identity-extra](https://github.com/phpgears/identity-extra) hosts non UUID based identity implementations, such as Mongo's ObjectId and several others
+[phpgears/identity-extra](https://github.com/phpgears/identity-extra) hosts non UUID based identity implementations, such as Mongo's ObjectId and several others, consider checking it depending on your use case
 
 ## The Right Identity
 
-There is no point on creating non-unique identities, always use a proven method of ensuring the uniqueness of the identity. This can basically be stated as: **do NOT implement your own mechanism for creating unique identifiers, ever, period**
+There is no point on creating non-unique identities, always use a proven method of ensuring the uniqueness of the identity value. This can basically be stated as: **DO NOT implement your own mechanism for creating unique identifiers, ever, period**
 
-**It's highly discouraged to allow identities with arbitrary string values**, or values that cannot be checked against to certify correctness, that is the reason why a general open-value identity class is not provided and **you should never implement such a thing**
+**It's highly discouraged to allow identities with _arbitrary_ string values**, or values that cannot be checked against to certify correctness, that is the reason why a general open-value identity class will never be provided in this package and **you should never implement such a thing**.
 
 If you want to maximize interoperability with other systems on your architecture or others', such as message queues, webhooks, shared messages systems, etc, you most probably should go with plain ol' UUID identities as the format is widely accepted and has support in all mayor languages
 
-If you have full control of your architecture and the systems it shares data with you may consider using a more concise UUID identifier or a non-UUID identifier which can have other benefits such as being more user/url friendly, being sortable, etc
+If you have full control of your architecture and all the systems it shares data with you may consider using a more concise UUID identifier, or a non-UUID identifier which can have other benefits such as being more user/url friendly, being sortable, etc
 
-_If you happen to know another method of generating unique identifiers let me know so it can be analysed and eventually integrated_
+Instead of randomly generated unique value, such as a UUID, you may be able to use real life unique identifiers that can be validated, such as IBAN for bank accounts or ISBN for publications. Strive for this kind of identifiers where possible
+
+```php
+use Biblys\Isbn\Isbn;
+use Gears\Identity\AbstractIdentity;
+use Gears\Identity\Exception\InvalidIdentityException;
+
+class ISBNIdentity extends AbstractIdentity
+{
+    final public static function fromString(string $value)
+    {
+        $isbn = new Isbn($value);
+        if (!$isbn->isValid()) {
+            throw new InvalidIdentityException(\sprintf('"%s" is not a valid ISBN', $value));
+        }
+
+        return new static($isbn->format('ISBN-13'));
+    }
+}
+```
 
 ## Contributing
 
