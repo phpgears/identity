@@ -25,7 +25,7 @@ class AbstractUuidIdentityTest extends TestCase
     public function testInvalidUuid(): void
     {
         $this->expectException(InvalidIdentityException::class);
-        $this->expectExceptionMessage('Provided identity value "invalidUUID" is not a valid UUID');
+        $this->expectExceptionMessage('Provided identity value "invalidUUID" is not a valid UUID.');
 
         AbstractUuidIdentityStub::fromString('invalidUUID');
     }
@@ -34,7 +34,7 @@ class AbstractUuidIdentityTest extends TestCase
     {
         $this->expectException(InvalidIdentityException::class);
         $this->expectExceptionMessage(
-            'Provided identity value "00000000-07bf-961b-abd8-c4716f92fcc0" is not a valid UUID'
+            'Provided identity value "00000000-07bf-961b-abd8-c4716f92fcc0" is not a valid UUID.'
         );
 
         AbstractUuidIdentityStub::fromString('00000000-07bf-961b-abd8-c4716f92fcc0');

@@ -29,7 +29,7 @@ class CondensedUuidIdentity extends AbstractUuidIdentity
             static::uuidFromString(\sprintf('%s%s-%s-%s-%s-%s%s%s', ...\str_split($value, 4)));
         } catch (\Exception $exception) {
             throw new InvalidIdentityException(
-                \sprintf('Provided identity value "%s" is not a valid condensed UUID', $value),
+                \sprintf('Provided identity value "%s" is not a valid condensed UUID.', $value),
                 0,
                 $exception
             );

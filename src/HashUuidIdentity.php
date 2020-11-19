@@ -30,7 +30,7 @@ class HashUuidIdentity extends AbstractUuidIdentity
             static::uuidFromString((new Hashids())->decodeHex($value));
         } catch (InvalidIdentityException $exception) {
             throw new InvalidIdentityException(
-                \sprintf('Provided identity value "%s" is not a valid hashed UUID', $value),
+                \sprintf('Provided identity value "%s" is not a valid hashed UUID.', $value),
                 0,
                 $exception
             );

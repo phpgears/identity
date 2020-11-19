@@ -25,7 +25,7 @@ class Base62UuidIdentityTest extends TestCase
     public function testInvalidBase62Uuid(): void
     {
         $this->expectException(InvalidIdentityException::class);
-        $this->expectExceptionMessage('Provided identity value "invalidBase62UUID" is not a valid bas62 UUID');
+        $this->expectExceptionMessage('Provided identity value "invalidBase62UUID" is not a valid bas62 UUID.');
 
         Base62UuidIdentity::fromString('invalidBase62UUID');
     }
@@ -33,7 +33,7 @@ class Base62UuidIdentityTest extends TestCase
     public function testNonRFC4122Base62Uuid(): void
     {
         $this->expectException(InvalidIdentityException::class);
-        $this->expectExceptionMessage('Provided identity value "14eEn5G9R1FmCRn08bMkMz" is not a valid bas62 UUID');
+        $this->expectExceptionMessage('Provided identity value "14eEn5G9R1FmCRn08bMkMz" is not a valid bas62 UUID.');
 
         Base62UuidIdentity::fromString('14eEn5G9R1FmCRn08bMkMz');
     }

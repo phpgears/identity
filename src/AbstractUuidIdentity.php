@@ -36,7 +36,7 @@ abstract class AbstractUuidIdentity extends AbstractIdentity
             $uuid = Uuid::fromString($uuidString);
         } catch (InvalidUuidStringException $exception) {
             throw new InvalidIdentityException(
-                \sprintf('Provided identity value "%s" is not a valid UUID', $uuidString),
+                \sprintf('Provided identity value "%s" is not a valid UUID.', $uuidString),
                 0,
                 $exception
             );
@@ -68,7 +68,7 @@ abstract class AbstractUuidIdentity extends AbstractIdentity
 
         if ($variant !== Uuid::RFC_4122 || !\in_array($version, \range(1, 6), true)) {
             throw new InvalidIdentityException(
-                \sprintf('Provided identity value "%s" is not a valid UUID', $uuid->toString())
+                \sprintf('Provided identity value "%s" is not a valid UUID.', $uuid->toString())
             );
         }
     }

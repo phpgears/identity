@@ -26,7 +26,7 @@ class CondensedUuidIdentityTest extends TestCase
     {
         $this->expectException(InvalidIdentityException::class);
         $this->expectExceptionMessage(
-            'Provided identity value "invalidCondensedUUID" is not a valid condensed UUID'
+            'Provided identity value "invalidCondensedUUID" is not a valid condensed UUID.'
         );
 
         CondensedUuidIdentity::fromString('invalidCondensedUUID');
@@ -36,7 +36,7 @@ class CondensedUuidIdentityTest extends TestCase
     {
         $this->expectException(InvalidIdentityException::class);
         $this->expectExceptionMessage(
-            'Provided identity value "0000000007bf961babd8c4716f92fcc0" is not a valid condensed UUID'
+            'Provided identity value "0000000007bf961babd8c4716f92fcc0" is not a valid condensed UUID.'
         );
 
         CondensedUuidIdentity::fromString('0000000007bf961babd8c4716f92fcc0');

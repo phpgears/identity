@@ -25,7 +25,7 @@ class ShortUuidIdentityTest extends TestCase
     public function testInvalidShortUuid(): void
     {
         $this->expectException(InvalidIdentityException::class);
-        $this->expectExceptionMessage('Provided identity value "invalidShortUUID" is not a valid short UUID');
+        $this->expectExceptionMessage('Provided identity value "invalidShortUUID" is not a valid short UUID.');
 
         ShortUuidIdentity::fromString('invalidShortUUID');
     }
@@ -33,7 +33,7 @@ class ShortUuidIdentityTest extends TestCase
     public function testNonRFC4122ShortUuid(): void
     {
         $this->expectException(InvalidIdentityException::class);
-        $this->expectExceptionMessage('Provided identity value "zaDP55gm3yL9cV2D" is not a valid short UUID');
+        $this->expectExceptionMessage('Provided identity value "zaDP55gm3yL9cV2D" is not a valid short UUID.');
 
         ShortUuidIdentity::fromString('zaDP55gm3yL9cV2D');
     }

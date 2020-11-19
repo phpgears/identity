@@ -25,7 +25,7 @@ class HashUuidIdentityTest extends TestCase
     public function testInvalidHashUuid(): void
     {
         $this->expectException(InvalidIdentityException::class);
-        $this->expectExceptionMessage('Provided identity value "invalidHashedUUID" is not a valid hashed UUID');
+        $this->expectExceptionMessage('Provided identity value "invalidHashedUUID" is not a valid hashed UUID.');
 
         HashUuidIdentity::fromString('invalidHashedUUID');
     }
@@ -34,7 +34,7 @@ class HashUuidIdentityTest extends TestCase
     {
         $this->expectException(InvalidIdentityException::class);
         $this->expectExceptionMessage(
-            'Provided identity value "gGJqXEqR7AFZjBkzP9MLtWYP9AA" is not a valid hashed UUID'
+            'Provided identity value "gGJqXEqR7AFZjBkzP9MLtWYP9AA" is not a valid hashed UUID.'
         );
 
         HashUuidIdentity::fromString('gGJqXEqR7AFZjBkzP9MLtWYP9AA');

@@ -30,7 +30,7 @@ class ShortUuidIdentity extends AbstractUuidIdentity
             static::assertUuidVariant((new ShortUuid())->decode($value));
         } catch (\Exception $exception) {
             throw new InvalidIdentityException(
-                \sprintf('Provided identity value "%s" is not a valid short UUID', $value),
+                \sprintf('Provided identity value "%s" is not a valid short UUID.', $value),
                 0,
                 $exception
             );
